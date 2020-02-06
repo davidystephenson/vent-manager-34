@@ -12,9 +12,23 @@ router.get(
         include: [Vent]
       })
 
-      
-
       response.send(rooms)
+    } catch (error) {
+      next(error)
+    }
+  }
+)
+
+router.get(
+  '/room/:id',
+  async (request, response, next) => {
+    try {
+      const room = await Room.findByPk(
+        request.params.id,
+        { include: [Vent] }
+      )
+      
+      response.send(room)
     } catch (error) {
       next(error)
     }

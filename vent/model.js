@@ -12,7 +12,7 @@ const Vent = db.define(
   }
 )
 
-Vent.belongsTo(Room)
-Room.hasMany(Vent)
+Vent.belongsTo(Room) // add roomId field (foreign key)
+Room.hasMany(Vent) // enables inclusion
 
 module.exports = Vent
