@@ -1,6 +1,8 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const ventRouter = require('./vent/router')
+const roomRouter = require('./room/router')
 
 const app = express()
 
@@ -10,11 +12,9 @@ function onListen () {
   console.log(`Listening on :${port}`)
 }
 
+const jsonMiddleware = express.json()
+app.use(jsonMiddleware)
 app.use(ventRouter)
-app.get('/vent', (request, response) => {
-  console.log('app test')
-  response.send('app')
-})
-
+app.use(roomRouter)
 
 app.listen(port, onListen)

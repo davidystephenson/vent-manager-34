@@ -37,4 +37,17 @@ router.get(
   }
 )
 
+router.post(
+  '/vent',
+  async function (request, response, next) {
+    try {
+      const vent = await Vent.create(request.body)
+      
+      response.send(vent)
+    } catch (error) {
+      next(error)
+    }
+  }
+)
+
 module.exports = router

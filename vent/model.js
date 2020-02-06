@@ -1,15 +1,18 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Room = require('../room/model')
 
 const Vent = db.define(
   'vent',
   {
-    location: Sequelize.STRING,
     open: {
       type: Sequelize.BOOLEAN,
       defaultValue: false
     }
   }
 )
+
+Vent.belongsTo(Room)
+Room.hasMany(Vent)
 
 module.exports = Vent
