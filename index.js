@@ -1,5 +1,7 @@
 const express = require('express')
 
+const Vent = require('./vent/model.js')
+
 const app = express()
 
 const port = 4000
