@@ -1,5 +1,5 @@
 const express = require('express')
-const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const ventRouter = require('./vent/router')
 const roomRouter = require('./room/router')
@@ -12,8 +12,12 @@ function onListen () {
   console.log(`Listening on :${port}`)
 }
 
+const corsMiddleware = cors()
+app.use(corsMiddleware)
+
 const jsonMiddleware = express.json()
 app.use(jsonMiddleware)
+
 app.use(ventRouter)
 app.use(roomRouter)
 
